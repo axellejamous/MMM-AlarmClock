@@ -204,10 +204,9 @@ Module.register('MMM-AlarmClock', {
      */
     resetAlarmClock() {
         this.alarmFired = false;
-        /*if (this.config.touch) {
+        if (this.config.touch) {
             this.sendNotification('HIDE_ALERT');
-        }*/
-        this.sendNotification('HIDE_ALERT');
+        }
         this.setNextAlarm();
         this.updateDom(300);
     },
@@ -306,19 +305,5 @@ Module.register('MMM-AlarmClock', {
         }
 
         return wrapper;
-    },
-
-    /** 
-     * All code beyond this point was added by Axelle Jamous 
-     * Student Electronics & ICT @ AP University College Antwerp 
-     */
-
-    notificationReceived: function(notification, payload, sender) {
-        if (this.alarmFired){
-            if (notification === "STOP_ALARM"){
-                Log.info('Alarm stopped!'); 
-                this.resetAlarmClock();         
-            }
-        }
-    },
+    }
 });
