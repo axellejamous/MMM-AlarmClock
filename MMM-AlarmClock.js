@@ -145,6 +145,7 @@ Module.register('MMM-AlarmClock', {
                 alert.timer = this.config.timer;
             }
             this.sendNotification('SHOW_ALERT', alert);
+            this.sendNotification('ALARM_TRIGGERED');                        
             this.alarmFired = true;
             this.updateDom(300);
             this.timer = setTimeout(() => {
