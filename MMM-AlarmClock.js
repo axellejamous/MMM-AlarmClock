@@ -328,7 +328,7 @@ Module.register('MMM-AlarmClock', {
             var mqttData = JSON.parse(payload);
             this.config.alarms.push({time: mqttData.hour+":"+mqttData.min, days: [1,2,3,4,5,6,7], sound: "alarm.mp3", title: "Alarm", message: mqttData.msg});
             this.updateDom(300);            
-            console.log("alarm obj: "+this.alarms);
+            console.log("alarm obj: "+this.config.alarms);
         }
     },
 });
