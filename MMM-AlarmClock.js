@@ -192,11 +192,21 @@ Module.register('MMM-AlarmClock', {
      * @description Sets the next occurring alarm event.
      */
     setNextAlarm() {
+        /*
         this.next = null;
         for (let i = 0; i < this.config.alarms.length; i += 1) {
             const temp = this.getMoment(this.config.alarms[i]);
             if (!this.next || temp.diff(this.next.moment) < 0) {
                 this.next = this.config.alarms[i];
+                this.next.moment = temp;
+            }
+        }
+        */
+        this.next = null;
+        for (let i = 0; i < this.alarmArr.length; i += 1) {
+            const temp = this.getMoment(this.alarmArr[i]);
+            if (!this.next || temp.diff(this.next.moment) < 0) {
+                this.next = this.alarmArr[i];
                 this.next.moment = temp;
             }
         }
@@ -329,7 +339,7 @@ Module.register('MMM-AlarmClock', {
         if(notification === "SET_ALARM"){
             var mqttData = JSON.parse(payload);
             this.alarmArr.push({time: mqttData.hour+":"+mqttData.min, days: [1,2,3,4,5,6,7], sound: "alarm.mp3", title: "Alarm", message: mqttData.msg});
-            console.log(this.alarmArr);
+            console.log("alarm obj: "+this.alarmArr);
         }
     },
 });
