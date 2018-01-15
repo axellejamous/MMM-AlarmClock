@@ -67,6 +67,7 @@ Module.register('MMM-AlarmClock', {
      * @property {int} fadeTimer - Fade in duration.
      * @property {number} fadeStep - Fade in volume steps.
      */
+
     defaults: {
         sound: 'alarm.mp3',
         touch: false,
@@ -75,7 +76,9 @@ Module.register('MMM-AlarmClock', {
         timer: 60 * 1000, // one minute
         fade: false,
         fadeTimer: 60 * 1000, // 60 seconds
-        fadeStep: 0.005 // 0.5%
+        fadeStep: 0.005, // 0.5%
+             // added
+        alarmArr = [{time: "10:41", days: [1,2,3,4,5,6,7], sound: "alarm.mp3", title: "School", message: "Get ready for school!!"}]
     },
 
     /**
@@ -320,6 +323,13 @@ Module.register('MMM-AlarmClock', {
                 Log.info('Alarm stopped!'); 
                 this.resetAlarmClock();         
             }
+        }
+
+        // SET ALARM
+        if(notification === "SET_ALARM"){
+            var mqttData = JSON.parse(payload);
+            this.alarmArr.push({time: mqttData.hour+":"+mqttData.min, days: [1,2,3,4,5,6,7], sound: "alarm.mp3", title: "Alarm", message: mqttData.msg});
+            console.log(this.alarmArr);
         }
     },
 });
