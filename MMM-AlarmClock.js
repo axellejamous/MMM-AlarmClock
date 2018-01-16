@@ -329,6 +329,7 @@ Module.register('MMM-AlarmClock', {
             this.config.alarms.push({time: mqttData.hour+":"+mqttData.min, days: [0,1,2,3,4,5,6], sound: "alarm.mp3", title: "Alarm", message: mqttData.msg});
             console.log("alarm obj: "+this.config.alarms);
             this.setNextAlarm();
+            this.updateDom(300);
         }
     },
 });
